@@ -1,21 +1,16 @@
 module.exports = ({ env }) => ({
-  // ...
-  upload: {
-    config: {
-      provider: 'cloudinary',
-      providerOptions: {
-        cloud_name: env('CLOUDINARY_NAME'),
-        api_key: env('CLOUDINARY_KEY'),
-        api_secret: env('CLOUDINARY_SECRET'),
-      },
-      actionOptions: {
-        upload: {
-          resource_type: 'auto',
-        },
-        uploadStream: {},
-        delete: {},
-      },
-    },
+  host: '0.0.0.0',
+  port: env.int('PORT', 1337),
+
+  url: env('PUBLIC_URL'),
+
+  proxy: true,
+
+  app: {
+    keys: env.array('APP_KEYS'),
   },
-  // ...
+
+  webhooks: {
+    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
+  },
 });
